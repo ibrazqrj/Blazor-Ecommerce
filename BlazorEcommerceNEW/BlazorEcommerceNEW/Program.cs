@@ -1,8 +1,11 @@
 global using BlazorEcommerceNEW.Shared;
 global using Microsoft.EntityFrameworkCore;
+global using BlazorEcommerceNEW.Data;
+global using BlazorEcommerceNEW.Services.ProductService;
 using BlazorEcommerceNEW.Client.Pages;
 using BlazorEcommerceNEW.Components;
-using BlazorEcommerceNEW.Data;
+using BlazorEcommerceNEW.Client.Services.ProductService;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,8 @@ builder.Services.AddScoped(sp => new HttpClient
 {
     BaseAddress = new Uri("https://localhost:7137/")
 });
+builder.Services.AddScoped<IServerProductService, ServerProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddDbContext<DataContext>(options => 
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
@@ -23,6 +28,7 @@ builder.Services.AddControllers(); // Diese Zeile fügt die Unterstützung für API
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
