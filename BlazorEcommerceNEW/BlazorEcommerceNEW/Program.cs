@@ -2,6 +2,7 @@ global using BlazorEcommerceNEW.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorEcommerceNEW.Data;
 global using BlazorEcommerceNEW.Services.ProductService;
+global using BlazorEcommerceNEW.Services.CategoryService;
 using BlazorEcommerceNEW.Client.Pages;
 using BlazorEcommerceNEW.Components;
 using BlazorEcommerceNEW.Client.Services.ProductService;
@@ -18,8 +19,12 @@ builder.Services.AddScoped(sp => new HttpClient
 {
     BaseAddress = new Uri("https://localhost:7137/")
 });
+
 builder.Services.AddScoped<IServerProductService, ServerProductService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<IServerCategoryService, ServerCategoryService>();
+
 builder.Services.AddDbContext<DataContext>(options => 
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
