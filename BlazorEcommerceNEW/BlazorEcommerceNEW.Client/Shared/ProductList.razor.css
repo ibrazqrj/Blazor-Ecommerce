@@ -10,23 +10,10 @@
         transform: scale(1.1, 1.1);
     }
 
-.media {
-    display: flex;
-    align-items: flex-start;
-}
-
-.media-body {
-    flex: 2;
-}
-
 .media-img-wrapper {
     width: 200px;
     text-align: center;
     margin-right: 20px;
-}
-
-.price {
-    color: green;
 }
 
 @media (max-width: 1023.98px) {

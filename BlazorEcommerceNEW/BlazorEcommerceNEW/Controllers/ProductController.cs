@@ -12,7 +12,7 @@ namespace BlazorEcommerceNEW.Controllers
 
         public ProductController(IServerProductService productService)
         {
-           _productService = productService;
+            _productService = productService;
         }
 
         public DataContext Context { get; }
@@ -21,6 +21,13 @@ namespace BlazorEcommerceNEW.Controllers
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
             var result = await _productService.GetProductsAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("{productId}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
+        {
+            var result = await _productService.GetProductAsync(productId);
             return Ok(result);
         }
     }
