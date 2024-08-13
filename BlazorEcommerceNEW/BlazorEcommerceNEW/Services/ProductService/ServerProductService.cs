@@ -1,6 +1,8 @@
-﻿namespace BlazorEcommerceNEW.Services.ProductService
+﻿using BlazorEcommerceNEW.Client.Services.ProductService;
+
+namespace BlazorEcommerceNEW.Services.ProductService
 {
-    public class ServerProductService : IServerProductService
+    public class ServerProductService : IProductService
     {
         private readonly DataContext _context;
         public ServerProductService(DataContext context)

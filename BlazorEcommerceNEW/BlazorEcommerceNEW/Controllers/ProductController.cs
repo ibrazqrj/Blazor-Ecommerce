@@ -1,4 +1,5 @@
-﻿using BlazorEcommerceNEW.Data;
+﻿using BlazorEcommerceNEW.Client.Services.ProductService;
+using BlazorEcommerceNEW.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace BlazorEcommerceNEW.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IServerProductService _productService;
+        private readonly IProductService _productService;
 
-        public ProductController(IServerProductService productService)
+        public ProductController(IProductService productService)
         {
            _productService = productService;
         }

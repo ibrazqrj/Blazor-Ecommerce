@@ -11,13 +11,18 @@ namespace BlazorEcommerceNEW.Client.Services.ProductService
         {
             _http = http;
         }
-        public List<Product> Products { get; set; } = new List<Product>();
 
-        public async Task GetProducts()
+        public async Task<ServiceResponse<List<Product>>> GetProductsAsync()
         {
             var result = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product");
+            var products = new List<Product>();
             if (result != null && result.Data != null)
-                Products = result.Data;
+                products = result.Data;
+
+            return new ServiceResponse<List<Product>>
+            {
+                Data = products
+            };
         }
     }
 }
