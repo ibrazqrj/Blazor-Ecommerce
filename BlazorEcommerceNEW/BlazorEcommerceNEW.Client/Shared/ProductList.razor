@@ -29,15 +29,22 @@ else
     }
 </ul>
 }
-@* @code {
+@code {
+    [Parameter]
+    public string? CategoryUrl { get; set; } = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ProductService.GetProducts(CategoryUrl);
+    }
+
     protected override void OnInitialized()
     {
-        ProductService.ProductsChanged += StateHasChanged;
+        // ProductService.ProductsChanged += StateHasChanged;
     }
 
     public void Dispose()
     {
-        ProductService.ProductsChanged -= StateHasChanged;
+        // ProductService.ProductsChanged -= StateHasChanged;
     }
 }
- *@

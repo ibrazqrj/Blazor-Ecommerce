@@ -1,0 +1,12 @@
+﻿
+@page "/category/{categoryUrl}"
+@using BlazorEcommerceNEW.Client.Shared
+
+<PageTitle>Home</PageTitle>
+
+<ProductList CategoryUrl="@CategoryUrl" />
+
+@code{
+    [Parameter]
+    public string? CategoryUrl { get; set; } = null;
+}
