@@ -16,4 +16,8 @@
     <ProjectReference Include="..\..\BlazorEcommerceNEW.Shared\BlazorEcommerceNEW.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\" />
+  </ItemGroup>
+
 </Project>

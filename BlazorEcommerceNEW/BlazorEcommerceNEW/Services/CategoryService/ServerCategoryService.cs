@@ -17,5 +17,10 @@ namespace BlazorEcommerceNEW.Services.CategoryService
                 Data = categories
             };
         }
+
+        public Task<ServiceResponse<Product>> GetProduct(int productId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
