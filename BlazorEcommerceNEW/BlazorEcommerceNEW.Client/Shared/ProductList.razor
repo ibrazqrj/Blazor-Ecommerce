@@ -1,9 +1,10 @@
 ﻿@inject IProductService ProductService
 @* @implements IDisposable *@
+@using BlazorEcommerceNEW.Client.Shared
 
 @if(ProductService.Products == null || ProductService.Products.Count == 0)
 {
-    <span>Loading the Hobbu Shop...</span>
+    <span>@ProductService.Message</span>
 }
 else
 {
@@ -40,12 +41,12 @@ else
 
     protected override void OnInitialized()
     {
-        // ProductService.ProductsChanged += StateHasChanged;
+        ProductService.ProductsChanged += StateHasChanged;
     }
 
     public void Dispose()
     {
-        // ProductService.ProductsChanged -= StateHasChanged;
+        ProductService.ProductsChanged -= StateHasChanged;
     }
 
     private string GetPriceText(Product product)

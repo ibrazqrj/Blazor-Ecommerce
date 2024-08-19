@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Füge hier die Controller-Dienste hinzu, um API-Endpunkte zu unterstützen
 builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddScoped(sp => new HttpClient
@@ -62,6 +63,7 @@ app.MapControllers(); // Diese Zeile stellt sicher, dass die API-Routen korrekt 
 
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
+    .AddInteractiveServerRenderMode()
     .AddAdditionalAssemblies(typeof(BlazorEcommerceNEW.Client._Imports).Assembly);
 
 app.Run();
