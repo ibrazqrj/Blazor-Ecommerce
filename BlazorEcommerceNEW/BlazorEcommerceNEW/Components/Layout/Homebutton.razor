@@ -1,0 +1,12 @@
+﻿@inject NavigationManager NavigationManager
+
+<a href="javascript:void(0)" @onclick="GoToHome">
+    <img src="https://imgur.com/5wg43t9.png" alt="Hobbu Shop" style="height: 40px; width: auto; border: none; margin-right:50px" />
+</a>
+
+@code {
+    private void GoToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}
