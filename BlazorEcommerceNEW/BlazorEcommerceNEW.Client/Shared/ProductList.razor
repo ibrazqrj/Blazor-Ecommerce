@@ -1,5 +1,5 @@
 ﻿@inject IProductService ProductService
-@* @implements IDisposable *@
+@implements IDisposable
 @using BlazorEcommerceNEW.Client.Shared
 
 @if (ProductService.Products == null || ProductService.Products.Count == 0)
@@ -43,7 +43,10 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        await ProductService.GetProducts(CategoryUrl);
+        if (CategoryUrl != null)
+        {
+            await ProductService.GetProducts(CategoryUrl);
+        }
     }
 
     protected override void OnInitialized()
