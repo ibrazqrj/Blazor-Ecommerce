@@ -3,7 +3,16 @@
 @inject IProductService ProductService
 
 <PageTitle>Home</PageTitle>
-<ProductList CategoryUrl="@CategoryUrl" />
+
+@if(SearchText == null && CategoryUrl == null)
+{
+    <FeaturedProducts />
+}
+else
+{
+    <ProductList CategoryUrl="@CategoryUrl" />
+}
+
 
 @code{
     [Parameter]

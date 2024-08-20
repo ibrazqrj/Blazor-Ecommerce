@@ -14,7 +14,7 @@ namespace BlazorEcommerceNEW.Client.Services.ProductService
         public List<Product> Products { get; set; } = new List<Product>();
         public string Message { get; set; } = "Produkte werden geladen...";
 
-        public event Action ProductsChanged;
+        public event Action? ProductsChanged;
 
         public async Task<ServiceResponse<Product>> GetProduct(int productId)
         {
@@ -25,12 +25,13 @@ namespace BlazorEcommerceNEW.Client.Services.ProductService
         public async Task GetProducts(string categoryUrl = null)
         {
             var result = categoryUrl == null ?
-            await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product") :
+            await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product/featured") :
             await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
             if (result != null && result.Data != null)
                 Products = result.Data;
+            Console.WriteLine($"Anzahl der Produkte: {Products.Count}");
 
-            //ProductsChanged.Invoke();
+            ProductsChanged?.Invoke();
         }
 
         public async Task<List<string>> GetProductSearchSuggestions(string searchText)

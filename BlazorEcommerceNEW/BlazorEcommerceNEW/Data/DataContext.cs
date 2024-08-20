@@ -120,13 +120,13 @@
                 new Category
                 {
                     Id = 2,
-                    Name = "Packs",
+                    Name = "Pakete",
                     Url = "packs"
                 },
                 new Category
                 {
                     Id = 3,
-                    Name = "Currencies",
+                    Name = "Währung",
                     Url = "currencies"
                 }
             );
@@ -137,31 +137,33 @@
                 Id = 1,
                 Title = "Hobbu - VIP",
                 Description = "Geniesse Hobbu mit verschiedenen Vorteile!",
-                ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTntRWnAmtPso89KDj2fqwHBE_aHRbf8mmSqQ&s",
-                CategoryId = 1
+                ImageUrl = "https://i.imgur.com/ZhRJNod.png",
+                CategoryId = 1,
+                Featured = true
             },
             new Product
             {
                 Id = 2,
-                Title = "Hobbu - Rare Pack",
+                Title = "Hobbu - Rare Paket",
                 Description = "Hobbu Rare Paket. Die Rares sind frei wählbar.",
-                ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYy9p1iZa44jfYqXC2NNBU1e4QbUtW5g9xeQ&s",
+                ImageUrl = "https://i.imgur.com/UQjhDCy.png",
                 CategoryId = 2
             },
             new Product
             {
                 Id = 3,
-                Title = "Hobbu - Diamonds",
+                Title = "Hobbu - Diamanten",
                 Description = "Erhalte Diamanten für den Hobbu Client!",
-                ImageUrl = "https://scontent-zrh1-1.xx.fbcdn.net/v/t39.30808-6/274978441_10158590467262963_5370902555679068282_n.png?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vOYzWEKGu0kQ7kNvgFk_LTV&_nc_ht=scontent-zrh1-1.xx&oh=00_AYByiUjSlVZghuOJ4fOKuQ2kWmBxsqzil7uPqguD6lFW6A&oe=66BFCF27",
-                CategoryId = 3
+                ImageUrl = "https://i.imgur.com/7mq1YzD.png",
+                CategoryId = 3,
+                Featured = true
             },            
             new Product
             {
                 Id = 4,
                 Title = "Hobbu - Taler",
                 Description = "Erhalte Taler für den Hobbu Client!",
-                ImageUrl = "https://media.karousell.com/media/photos/products/2015/11/22/habbo_coins_10cents_1448207029_42efc8a0.jpg",
+                ImageUrl = "https://i.imgur.com/qgAsu9u.png",
                 CategoryId = 3
             },
             new Product
@@ -169,7 +171,7 @@
                 Id = 5,
                 Title = "Hobbu - Duckets",
                 Description = "Erhalte Taler für den Hobbu Client!",
-                ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAGmXZnYohNKEHtj_59MTJg4N-Xo4uM1KK2A&s",
+                ImageUrl = "https://cdn.discordapp.com/attachments/1266160134665670797/1275056899997564952/DucketsBanner.png?ex=66c480c6&is=66c32f46&hm=c10369c0a81232057f634f538999324158777fa771527d1ef7b4dbfbf253b294&",
                 CategoryId = 3
             }
             );
