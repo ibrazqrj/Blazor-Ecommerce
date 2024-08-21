@@ -6,6 +6,8 @@ global using BlazorEcommerceNEW.Services.CategoryService;
 using BlazorEcommerceNEW.Client.Pages;
 using BlazorEcommerceNEW.Components;
 using BlazorEcommerceNEW.Client.Services.ProductService;
+using BlazorEcommerceNEW.Client.Services.CartService;
+using Blazored.LocalStorage;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,9 @@ builder.Services.AddScoped(sp => new HttpClient
 
 builder.Services.AddScoped<IServerProductService, ServerProductService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICartService, CartService>();
+
+builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<IServerCategoryService, ServerCategoryService>();
 

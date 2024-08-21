@@ -10,7 +10,7 @@ namespace BlazorEcommerceNEW.Client.Services.CartService
             _localStorage = localStorage;
         }
 
-        public event Action OnChange;
+        public event Action? OnChange;
 
         public async Task AddToCart(CartItem cartItem)
         {

@@ -8,7 +8,7 @@ namespace BlazorEcommerceNEW.Shared
 {
     public class CartItem
     {
-        public int ProductID { get; set; }
+        public int ProductId { get; set; }
         public int ProductTypeId { get; set; }
     }
 }
