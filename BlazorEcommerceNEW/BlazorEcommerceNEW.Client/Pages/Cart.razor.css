@@ -1,25 +1,97 @@
-﻿.container {
+﻿.cart-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Arial', sans-serif; 
+    color: #333; 
+    width: 90%; 
+    margin: 0 auto 20px auto;
+}
+
+.container {
     display: flex;
-    padding: 6px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .image-wrapper {
-    width: 150px;
+    width: 150px; 
     text-align: center;
+    margin-right: 20px; 
 }
 
 .image {
     max-height: 150px;
-    max-width: 150px;
+    max-width: 100%;
     padding: 6px;
 }
 
-.name {
+.details {
     flex-grow: 1;
-    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.name {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.variant {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.btn-delete {
+    background-color: #f63434;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+    .btn-delete:hover {
+        background-color: #d62c2c;
+    }
+
+.input-quantity {
+    width: 50px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .cart-product-price {
     font-weight: 600;
     text-align: right;
+}
+
+.total-price {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    width: 90%;
+    margin: 20px auto 0 auto;
 }

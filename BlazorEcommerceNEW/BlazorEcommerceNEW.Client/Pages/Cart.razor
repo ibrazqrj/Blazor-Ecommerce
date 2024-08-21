@@ -4,7 +4,9 @@
 
 <PageTitle>Warenkorb</PageTitle>
 
-<h3>Warenkorb</h3>
+<div class="cart-title">
+    Warenkorb
+</div>
 
 @if(cartProducts == null || cartProducts.Count == 0)
 {
@@ -17,47 +19,79 @@ else
         {
             <div class="container">
                 <div class="image-wrapper">
-                    <img src="@product.ImageUrl" class="image"/>
+                    <img src="@product.ImageUrl" class="image" />
                 </div>
-                <div class="name">
-                    <h5><a href="/product/@product.ProductId">@product.Title</a></h5>
-                    <span>@product.ProductType</span><br/>
-                    <button class="btn-delete" @onclick="@(() => RemoveProductFromCart(product.ProductId, product.ProductTypeId))">Entfernen</button>
+                <div class="details">
+                    <div class="name">
+                        <h5><a href="/product/@product.ProductId">@product.Title</a></h5>
+                        <span class="variant">@product.ProductType</span>
+                    </div>
                 </div>
-                <div class="cart-product-price">@product.Price€</div>
+                <div class="actions">
+                    <button class="btn-delete" @onclick="@(() =>
+                    RemoveProductFromCart(product.ProductId, product.ProductTypeId))">
+                        Entfernen
+                    </button>
+                    <input type="number" value="@product.Quantity"
+                           @onchange="@((ChangeEventArgs e) => UpdateQuantity(e, product))"
+                           class="form-control input-quantity"
+                           min="1" />
+                    <div class="cart-product-price">@(product.Price * product.Quantity)€</div>
+                </div>
             </div>
         }
-        <div class="cart-product-price">
-            Total (@cartProducts.Count): @cartProducts.Sum(product => product.Price)€
+        <div class="total-price">
+            Total (@cartProducts.Count): @cartProducts.Sum(product => product.Price * product.Quantity)€
         </div>
     </div>
 }
+
 @code {
     List<CartProductResponse> cartProducts = null;
     string message = "Warenkorb wird geladen...";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        int prevCount = cartProducts?.Count ?? 0;
-        if ((await CartService.GetCartItems()).Count == 0)
+        if (firstRender)
         {
-            message = "Dein Warenkorb ist leer!";
-            cartProducts = new List<CartProductResponse>();
+            await LoadCart();
         }
-        else
-        {
-            cartProducts = await CartService.GetCartProducts();
-        }
-
-        if (prevCount != cartProducts.Count)
-        {
-            StateHasChanged();
-        }
-
-
     }
 
     protected override async Task OnInitializedAsync()
     {
+        // await LoadCart();
+    }
+
+    private async Task RemoveProductFromCart(int productId, int producTypeId)
+    {
+        await CartService.RemoveProductFromCart(productId, producTypeId);
+        await LoadCart();
+    }
+
+    private async Task LoadCart()
+    {
+
+    var cartItems = await CartService.GetCartItems();
+    if (cartItems.Count == 0)
+    {
+        cartProducts = new List<CartProductResponse>();
+        message = "Dein Warenkorb ist leer!";
+    }
+    else
+    {
+        cartProducts = await CartService.GetCartProducts();
+        message = null;
+    }
+
+    StateHasChanged();
+}
+
+    private async Task UpdateQuantity(ChangeEventArgs e, CartProductResponse product)
+    {
+        product.Quantity = int.Parse(e.Value.ToString());
+        if (product.Quantity < 1)
+            product.Quantity = 1;
+        await CartService.UpdateQuantity(product);
     }
 }
