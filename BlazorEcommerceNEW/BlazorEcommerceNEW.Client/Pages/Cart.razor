@@ -1,0 +1,63 @@
+﻿@page "/cart"
+@inject ICartService CartService
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Warenkorb</PageTitle>
+
+<h3>Warenkorb</h3>
+
+@if(cartProducts == null || cartProducts.Count == 0)
+{
+    <span>@message</span>
+}
+else
+{
+    <div>
+        @foreach (var product in cartProducts)
+        {
+            <div class="container">
+                <div class="image-wrapper">
+                    <img src="@product.ImageUrl" class="image"/>
+                </div>
+                <div class="name">
+                    <h5><a href="/product/@product.ProductId">@product.Title</a></h5>
+                    <span>@product.ProductType</span><br/>
+                    <button class="btn-delete" @onclick="@(() => RemoveProductFromCart(product.ProductId, product.ProductTypeId))">Entfernen</button>
+                </div>
+                <div class="cart-product-price">@product.Price€</div>
+            </div>
+        }
+        <div class="cart-product-price">
+            Total (@cartProducts.Count): @cartProducts.Sum(product => product.Price)€
+        </div>
+    </div>
+}
+@code {
+    List<CartProductResponse> cartProducts = null;
+    string message = "Warenkorb wird geladen...";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        int prevCount = cartProducts?.Count ?? 0;
+        if ((await CartService.GetCartItems()).Count == 0)
+        {
+            message = "Dein Warenkorb ist leer!";
+            cartProducts = new List<CartProductResponse>();
+        }
+        else
+        {
+            cartProducts = await CartService.GetCartProducts();
+        }
+
+        if (prevCount != cartProducts.Count)
+        {
+            StateHasChanged();
+        }
+
+
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+    }
+}

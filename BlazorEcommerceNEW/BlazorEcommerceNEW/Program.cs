@@ -3,11 +3,13 @@ global using Microsoft.EntityFrameworkCore;
 global using BlazorEcommerceNEW.Data;
 global using BlazorEcommerceNEW.Services.ProductService;
 global using BlazorEcommerceNEW.Services.CategoryService;
+global using BlazorEcommerceNEW.Services.CartService;
 using BlazorEcommerceNEW.Client.Pages;
 using BlazorEcommerceNEW.Components;
 using BlazorEcommerceNEW.Client.Services.ProductService;
 using BlazorEcommerceNEW.Client.Services.CartService;
 using Blazored.LocalStorage;
+using BlazorEcommerceNEW.Services.CartService;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,7 @@ builder.Services.AddScoped(sp => new HttpClient
 builder.Services.AddScoped<IServerProductService, ServerProductService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IServerCartService, ServerCartService>();
 
 builder.Services.AddBlazoredLocalStorage();
 

@@ -21,10 +21,4 @@
     <Folder Include="Components\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Pages\FeaturedProducts.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-  </ItemGroup>
-
 </Project>
