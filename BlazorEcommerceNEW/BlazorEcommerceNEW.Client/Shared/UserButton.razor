@@ -1,4 +1,7 @@
-﻿@rendermode InteractiveWebAssembly
+﻿@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@rendermode InteractiveWebAssembly
 
 <div class="dropdown">
     <button @onclick="ToggleUserMenu"
@@ -7,7 +10,15 @@
         <img src="https://i.imgur.com/dL9J6Sg.png" alt="User Icon" style="width: 25px; height: 25px;">
     </button>
     <div class="dropdown-menu dropdown-menu-right @UserMenuCssClass">
-        <a href="register" class="dropdown-item">Registrieren</a>
+        <AuthorizeView>
+            <Authorized>
+                <button class="dropdown-item" @onclick="Logout">Logout</button>
+            </Authorized>
+            <NotAuthorized>
+                <a href="login" class="dropdown-item">Login</a>
+                <a href="register" class="dropdown-item">Registrieren</a>
+            </NotAuthorized>
+        </AuthorizeView>
     </div>
 </div>
 
@@ -20,10 +31,34 @@
     {
         showUserMenu = !showUserMenu;
     }
-        
+
     private async Task HideUserMenu()
     {
         await Task.Delay(200);
         showUserMenu = false;
+    }
+
+    private async Task Logout()
+    {
+        await LocalStorage.RemoveItemAsync("authToken");
+        await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("");
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (user?.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                //authMessage = $"{user.Identity.Name} is authenticated.";
+            }
+        }
     }
 }
