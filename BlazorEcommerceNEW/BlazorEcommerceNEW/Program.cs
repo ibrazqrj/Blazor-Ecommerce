@@ -8,8 +8,10 @@ using BlazorEcommerceNEW.Client.Pages;
 using BlazorEcommerceNEW.Components;
 using BlazorEcommerceNEW.Client.Services.ProductService;
 using BlazorEcommerceNEW.Client.Services.CartService;
+using BlazorEcommerceNEW.Services.AuthService;
 using Blazored.LocalStorage;
 using BlazorEcommerceNEW.Services.CartService;
+using BlazorEcommerceNEW.Client.Services.AuthService;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,9 +28,12 @@ builder.Services.AddScoped(sp => new HttpClient
 });
 
 builder.Services.AddScoped<IServerProductService, ServerProductService>();
+builder.Services.AddScoped<IServerCartService, ServerCartService>();
+builder.Services.AddScoped<IServerAuthService, ServerAuthService>();
+
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
-builder.Services.AddScoped<IServerCartService, ServerCartService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddBlazoredLocalStorage();
 
