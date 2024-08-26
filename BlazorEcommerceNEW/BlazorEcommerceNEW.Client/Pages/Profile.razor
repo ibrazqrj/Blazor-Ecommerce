@@ -1,0 +1,12 @@
+﻿@page "/profile"
+@rendermode InteractiveWebAssembly
+
+<AuthorizeView>
+    <Authorized>
+        <h3>Willkommen! Du bist mit der E-Mail <i>@context.User.Identity.Name</i> eingeloggt.</h3>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+}
