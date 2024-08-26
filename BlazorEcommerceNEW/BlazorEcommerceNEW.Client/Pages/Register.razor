@@ -1,4 +1,5 @@
 ﻿@page "/register"
+@rendermode InteractiveWebAssembly
 
 <PageTitle>Registrieren</PageTitle>
 
@@ -9,17 +10,19 @@
     <div class="mb-3">
         <label for="email">E-Mail</label>
         <InputText id="email" @bind-Value="user.Email" class="form-control" />
+        <ValidationMessage For="@(() => user.Email)" />
     </div>
     <div class="mb-3">
         <label for="password">Passwort</label>
         <InputText id="password" @bind-Value="user.Password" class="form-control" type="password"/>
+        <ValidationMessage For="@(() => user.Password)" />
     </div>
     <div class="mb-3">
         <label for="confirmpassword">Passwort bestätigen</label>
         <InputText id="confirmpassword" @bind-Value="user.ConfirmPassword" class="form-control" type="password"/>
+        <ValidationMessage For="@(() => user.ConfirmPassword)" />
     </div>
     <button type="submit" class="btn btn-primary">Registrieren</button>
-    <ValidationSummary />
 </EditForm>
 
 @code {
